@@ -92,22 +92,19 @@ class Expenseschart extends StatelessWidget {
           'Pengeluaran Per Kategori',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 40),
         AspectRatio(
           aspectRatio: 1.5,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            child: BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.spaceEvenly,
-                maxY: maxAmount,
-                minY: 0,
-                borderData: FlBorderData(show: false),
-                gridData: FlGridData(show: false),
-                titlesData: _titlesData,
-                barGroups: _barGroups,
-                barTouchData: _barTouchData,
-              ),
+          child: BarChart(
+            BarChartData(
+              alignment: BarChartAlignment.spaceEvenly,
+              maxY: maxAmount,
+              minY: 0,
+              borderData: FlBorderData(show: false),
+              gridData: FlGridData(show: false),
+              titlesData: _titlesData,
+              barGroups: _barGroups,
+              barTouchData: _barTouchData,
             ),
           ),
         ),

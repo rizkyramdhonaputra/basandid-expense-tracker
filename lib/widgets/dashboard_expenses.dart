@@ -86,7 +86,27 @@ class _DashboardExpensesState extends State<DashboardExpenses> {
         title: Text('Expenses Tracker Apps'),
         actions: [IconButton(onPressed: _openFormInput, icon: Icon(Icons.add))],
       ),
-      body: Column(children: [Expenseschart(dataTransaksi: _recordedTransactions), Expanded(child: mainContent)]),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return orientation == Orientation.portrait
+              ? Column(
+                children: [
+                  Expanded(
+                    child: Expenseschart(dataTransaksi: _recordedTransactions),
+                  ),
+                  Expanded(child: mainContent),
+                ],
+              )
+              : Row(
+                children: [
+                  Expanded(
+                    child: Expenseschart(dataTransaksi: _recordedTransactions),
+                  ),
+                  Expanded(child: mainContent),
+                ],
+              );
+        },
+      ),
     );
   }
 }
