@@ -73,83 +73,87 @@ class _FormInputExpensesState extends State<FormInputExpenses> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 50, 16, 16),
-      child: Column(
-        children: [
-          TextField(
-            maxLength: 50,
-            controller: _summaryInputController,
-            decoration: InputDecoration(label: Text('Summary Transaction')),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  maxLength: 50,
-                  controller: _ammountInputController,
-                  decoration: InputDecoration(
-                    label: Text('Amount'),
-                    prefixText: 'Rp ',
+    final keyboardInsets = MediaQuery.of(context).viewInsets.bottom;
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(16, 50, 16, keyboardInsets + 16),
+        child: Column(
+          children: [
+            TextField(
+              maxLength: 50,
+              controller: _summaryInputController,
+              decoration: InputDecoration(label: Text('Summary Transaction')),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    maxLength: 50,
+                    controller: _ammountInputController,
+                    decoration: InputDecoration(
+                      label: Text('Amount'),
+                      prefixText: 'Rp ',
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                  keyboardType: TextInputType.number,
                 ),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'Pilih Tanggal'
-                          : dateFormatter.format(_selectedDate!),
-                    ),
-                    IconButton(
-                      onPressed: _openDatePicker,
-                      icon: Icon(Icons.calendar_month_outlined),
-                    ),
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        _selectedDate == null
+                            ? 'Pilih Tanggal'
+                            : dateFormatter.format(_selectedDate!),
+                      ),
+                      IconButton(
+                        onPressed: _openDatePicker,
+                        icon: Icon(Icons.calendar_month_outlined),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              DropdownButton(
-                value: _selectedCategory,
-                items:
-                    Category.values
-                        .map(
-                          (category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category.name.toUpperCase()),
-                          ),
-                        )
-                        .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
-              ),
-              Spacer(),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel', style: TextStyle(color: Colors.red)),
-              ),
-              ElevatedButton(
-                onPressed: _submitTransaction,
-                child: Text('Submit'),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            Row(
+              children: [
+                DropdownButton(
+                  value: _selectedCategory,
+                  items:
+                      Category.values
+                          .map(
+                            (category) => DropdownMenuItem(
+                              value: category,
+                              child: Text(category.name.toUpperCase()),
+                            ),
+                          )
+                          .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                ),
+                Spacer(),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel', style: TextStyle(color: Colors.red)),
+                ),
+                ElevatedButton(
+                  onPressed: _submitTransaction,
+                  child: Text('Submit'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

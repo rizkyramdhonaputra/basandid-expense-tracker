@@ -93,18 +93,23 @@ class Expenseschart extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 40),
-        AspectRatio(
-          aspectRatio: 1.5,
-          child: BarChart(
-            BarChartData(
-              alignment: BarChartAlignment.spaceEvenly,
-              maxY: maxAmount,
-              minY: 0,
-              borderData: FlBorderData(show: false),
-              gridData: FlGridData(show: false),
-              titlesData: _titlesData,
-              barGroups: _barGroups,
-              barTouchData: _barTouchData,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: AspectRatio(
+              aspectRatio: 1.5,
+              child: BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceEvenly,
+                  maxY: maxAmount,
+                  minY: 0,
+                  borderData: FlBorderData(show: false),
+                  gridData: FlGridData(show: false),
+                  titlesData: _titlesData,
+                  barGroups: _barGroups,
+                  barTouchData: _barTouchData,
+                ),
+              ),
             ),
           ),
         ),

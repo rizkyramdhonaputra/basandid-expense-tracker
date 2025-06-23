@@ -29,6 +29,7 @@ class _DashboardExpensesState extends State<DashboardExpenses> {
 
   void _openFormInput() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (ctx) => FormInputExpenses(onSubmitData: _addTransaction),
